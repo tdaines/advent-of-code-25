@@ -14,7 +14,16 @@ func Part1() (answer int, elapsed time.Duration) {
 	var start = time.Now()
 
 	var lines = strings.Split(input, "\n")
-	var password = GetPassword(lines)
+	var password = GetPassword(lines, false)
+
+	return password, time.Since(start)
+}
+
+func Part2() (answer int, elapsed time.Duration) {
+	var start = time.Now()
+
+	var lines = strings.Split(input, "\n")
+	var password = GetPassword(lines, true)
 
 	return password, time.Since(start)
 }
@@ -32,15 +41,20 @@ const (
 	NUM_TICKS = (DIAL_MAX - DIAL_MIN) + 1
 )
 
-func GetPassword(lines []string) int {
+func GetPassword(lines []string, includeZeroTouches bool) int {
 	var dial = 50
 	var password = 0
+	var zeroTouches = 0
 
 	for _, line := range lines {
 		direction, distance := ParseRotation(line)
-		dial = RotateDial(dial, direction, distance)
+		dial, zeroTouches = RotateDial(dial, direction, distance)
 		if dial == 0 {
 			password += 1
+		}
+
+		if includeZeroTouches {
+			password += zeroTouches
 		}
 	}
 
@@ -58,26 +72,35 @@ func ParseRotation(line string) (direction Direction, distance int) {
 		direction = Left
 	}
 
-	distance, err := strconv.Atoi(line[1:])
-	if err == nil {
-		return
-	}
-
-	distance = 0
+	distance, _ = strconv.Atoi(line[1:])
 	return
 }
 
-func RotateDial(dial int, direction Direction, distance int) int {
+func RotateDial(dial int, direction Direction, distance int) (int, int) {
+	var zeroTouches = distance / NUM_TICKS
 	distance = distance % NUM_TICKS
 
 	if direction == Right {
-		dial = (dial + distance) % NUM_TICKS
+		dial = dial + distance
+		if dial > DIAL_MAX {
+			zeroTouches += 1
+			dial = dial - NUM_TICKS
+
+			if dial == 0 {
+				zeroTouches -= 1
+			}
+		}
 	} else {
+		var dialStartedAtZero = dial == 0
+
 		dial -= distance
-		if dial < 0 {
+		if dial < DIAL_MIN {
+			if !dialStartedAtZero {
+				zeroTouches += 1
+			}
 			dial = NUM_TICKS + dial
 		}
 	}
 
-	return dial
+	return dial, zeroTouches
 }
