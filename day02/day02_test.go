@@ -53,3 +53,45 @@ func TestSumInvalidProductIDs(t *testing.T) {
 	var sum = day02.SumInvalidProductIDs(line)
 	assert.Equal(t, 1227775554, sum)
 }
+
+func TestFindInvalidProductIDsStrict(t *testing.T) {
+	var invalid = day02.FindInvalidProductIDsStrict(11, 22)
+	assert.Equal(t, []int{11, 22}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(95, 115)
+	assert.Equal(t, []int{99, 111}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(998, 1012)
+	assert.Equal(t, []int{999, 1010}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(1188511880, 1188511890)
+	assert.Equal(t, []int{1188511885}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(222220, 222224)
+	assert.Equal(t, []int{222222}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(1698522, 1698528)
+	assert.Equal(t, []int{}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(446443, 446449)
+	assert.Equal(t, []int{446446}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(38593856, 38593862)
+	assert.Equal(t, []int{38593859}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(565653, 565659)
+	assert.Equal(t, []int{565656}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(824824821, 824824827)
+	assert.Equal(t, []int{824824824}, invalid)
+
+	invalid = day02.FindInvalidProductIDsStrict(2121212118, 2121212124)
+	assert.Equal(t, []int{2121212121}, invalid)
+}
+
+func TestSumInvalidProductIDsStrict(t *testing.T) {
+	var line = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
+
+	var sum = day02.SumInvalidProductIDsStrict(line)
+	assert.Equal(t, 4174379265, sum)
+}

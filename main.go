@@ -32,9 +32,9 @@ func main() {
 	total += elapsed
 	t.AddLine("2", "1", answer, elapsed)
 
-	// answer, elapsed = day02.Part2()
-	// total += elapsed
-	// t.AddLine("", "2", answer, elapsed)
+	answer, elapsed = day02.Part2()
+	total += elapsed
+	t.AddLine("", "2", answer, elapsed)
 
 	t.AddLine(dayBreak, partBreak, answerBreak, elapsedBreak)
 
