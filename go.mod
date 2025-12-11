@@ -4,7 +4,6 @@ go 1.25.5
 
 require (
 	github.com/cheynewallace/tabby v1.1.1
-	github.com/deckarep/golang-set/v2 v2.8.0
 	github.com/stretchr/testify v1.11.1
 )
 

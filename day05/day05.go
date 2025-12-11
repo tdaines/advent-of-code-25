@@ -6,8 +6,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	set "github.com/deckarep/golang-set/v2"
 )
 
 //go:embed input.txt
@@ -179,20 +177,4 @@ func CountAllFreshIngredients(ranges []Range) (sum int) {
 	}
 
 	return
-}
-
-func ParseNumbers(line string) set.Set[int] {
-	// "41 48 83 86 17"
-	// " 1 21 53 59 44"
-	var numbers = set.NewSet[int]()
-
-	parts := strings.Split(line, " ")
-	for _, part := range parts {
-		number, err := strconv.Atoi(part)
-		if err == nil {
-			numbers.Add(number)
-		}
-	}
-
-	return numbers
 }
