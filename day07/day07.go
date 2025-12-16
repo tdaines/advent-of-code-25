@@ -126,23 +126,6 @@ func markBeam(lines [][]byte, row, col int) {
 	}
 }
 
-func markEmpty(lines [][]byte, row, col int) int {
-	if row < 0 || row >= len(lines) {
-		return 0
-	}
-
-	if col < 0 || col >= len(lines[row]) {
-		return 0
-	}
-
-	if lines[row][col] == BEAM {
-		lines[row][col] = EMPTY
-		return 1
-	}
-
-	return 0
-}
-
 func getVal(paths [][]int, row, col int) int {
 	if row < 0 || row >= len(paths) {
 		return 0
