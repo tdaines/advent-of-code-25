@@ -10,6 +10,7 @@ import (
 	"github.com/tdaines/advent-of-code-25/day04"
 	"github.com/tdaines/advent-of-code-25/day05"
 	"github.com/tdaines/advent-of-code-25/day06"
+	"github.com/tdaines/advent-of-code-25/day07"
 )
 
 func main() {
@@ -77,6 +78,16 @@ func main() {
 	t.AddLine("6", "1", answer, elapsed)
 
 	answer, elapsed = day06.Part2()
+	total += elapsed
+	t.AddLine("", "2", answer, elapsed)
+
+	t.AddLine(dayBreak, partBreak, answerBreak, elapsedBreak)
+
+	answer, elapsed = day07.Part1()
+	total += elapsed
+	t.AddLine("7", "1", answer, elapsed)
+
+	answer, elapsed = day07.Part2()
 	total += elapsed
 	t.AddLine("", "2", answer, elapsed)
 
