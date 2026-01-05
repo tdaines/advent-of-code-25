@@ -58,7 +58,7 @@ func TestParseWorksheetRtL(t *testing.T) {
 	assert.Equal(t, []byte{'*', '+', '*', '+'}, operations)
 }
 
-func TestSolverWorksheetRtL(t *testing.T) {
+func TestSolveWorksheetRtL(t *testing.T) {
 	var worksheet = []string{
 		"123 328  51 64 ",
 		" 45 64  387 23 ",
